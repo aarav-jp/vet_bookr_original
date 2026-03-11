@@ -5,12 +5,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:vet_bookr/oScreens/list_pet.dart';
 import 'package:vet_bookr/oScreens/pharma_Loading.dart';
 import 'package:vet_bookr/oScreens/social_loading.dart';
+import 'package:vet_bookr/oScreens/testing/pet_gpt_screen.dart';
 import 'package:vet_bookr/oScreens/welcome_screen.dart';
 
 import 'clinicsloading.dart';
 
 class MenuScreen extends StatefulWidget {
-  const MenuScreen({Key? key}) : super(key: key);
+  const MenuScreen({super.key});
 
   @override
   State<MenuScreen> createState() => _MenuScreenState();
@@ -46,7 +47,7 @@ class _MenuScreenState extends State<MenuScreen> {
         elevation: 0,
         systemOverlayStyle: SystemUiOverlayStyle.dark,
         leading: Container(),
-        toolbarHeight: 0.1.sh,
+        toolbarHeight: 0.07.sh,
         centerTitle: true,
         title: Image.asset(
           "assets/logo.png",
@@ -63,7 +64,7 @@ class _MenuScreenState extends State<MenuScreen> {
               fit: BoxFit.cover),
         ),
         child: isLoading
-            ? Container(
+            ? SizedBox(
                 height: 2.sp,
                 width: 2.sp,
                 child: CircularProgressIndicator(
@@ -73,80 +74,102 @@ class _MenuScreenState extends State<MenuScreen> {
               )
             : Column(children: [
                 Container(
-                  padding: EdgeInsets.only(top: 0.2.sh),
+                  padding: EdgeInsets.only(top: 0.1.sh),
                   width: 1.sw,
                   margin: EdgeInsets.only(
-                    top: 0.06.sh,
+                    top: 0.038.sh,
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Column(
-                        children: [
-                          ElevatedButton(
-                            onPressed: () {
-                              checkLogin();
-                            },
-                            style: ButtonStyle(
-                              elevation: MaterialStateProperty.all(0),
-                              backgroundColor:
-                                  MaterialStateProperty.all(Colors.transparent),
-                              shape: MaterialStateProperty.all(
-                                CircleBorder(),
-                              ),
-                            ),
-                            child: Image.asset(
-                              "assets/My_Pet_Profile.png",
-                              width: 0.27.sw,
-                              height: 0.27.sw,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 0.01.sh,
-                          ),
-                          Text(
-                            "My Pets",
-                            style: TextStyle(
-                              fontSize: 16.sp,
-                              fontFamily: "Vintage Style",
-                            ),
-                          ),
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          ElevatedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => SplashScreen(),
+                      Card(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(25.sp)),
+                        child: Container(
+                          padding: EdgeInsets.only(top: 0.02.sh),
+                          height: 0.2.sh,
+                          width: 0.39.sw,
+                          alignment: Alignment.center,
+                          child: Column(
+                            children: [
+                              ElevatedButton(
+                                onPressed: () {
+                                  checkLogin();
+                                },
+                                style: ButtonStyle(
+                                  elevation: WidgetStateProperty.all(0),
+                                  backgroundColor: WidgetStateProperty.all(
+                                      Colors.transparent),
+                                  shape: WidgetStateProperty.all(
+                                    CircleBorder(),
+                                  ),
                                 ),
-                              );
-                            },
-                            style: ButtonStyle(
-                              elevation: MaterialStateProperty.all(0),
-                              backgroundColor:
-                                  MaterialStateProperty.all(Color(0xffFAEEE2)),
-                              shape: MaterialStateProperty.all(
-                                CircleBorder(),
+                                child: Image.asset(
+                                  "assets/My_Pet_Profile.png",
+                                  width: 0.27.sw,
+                                  height: 0.27.sw,
+                                ),
                               ),
-                            ),
-                            child: Image.asset(
-                              "assets/Find_a_Pet.png",
-                              width: 0.27.sw,
-                              height: 0.27.sw,
-                            ),
+                              SizedBox(
+                                height: 0.01.sh,
+                              ),
+                              Text(
+                                "My Pets",
+                                style: TextStyle(
+                                    fontSize: 16.5.sp,
+                                    fontFamily: "Vintage Style",
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
                           ),
-                          SizedBox(
-                            height: 0.01.sh,
+                        ),
+                      ),
+                      Card(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(25.sp)),
+                        child: Container(
+                          padding: EdgeInsets.only(top: 0.02.sh),
+                          height: 0.2.sh,
+                          width: 0.39.sw,
+                          alignment: Alignment.center,
+                          child: Column(
+                            children: [
+                              ElevatedButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => SplashScreen(),
+                                    ),
+                                  );
+                                },
+                                style: ButtonStyle(
+                                  elevation: WidgetStateProperty.all(0),
+                                  backgroundColor: WidgetStateProperty.all(
+                                      Colors.transparent),
+                                  shape: WidgetStateProperty.all(
+                                    CircleBorder(),
+                                  ),
+                                ),
+                                child: Image.asset(
+                                  "assets/Find_a_Pet.png",
+                                  width: 0.27.sw,
+                                  height: 0.27.sw,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 0.01.sh,
+                              ),
+                              Text(
+                                "Find a Vet",
+                                style: TextStyle(
+                                    fontSize: 16.5.sp,
+                                    fontFamily: "Vintage Style",
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
                           ),
-                          Text(
-                            "Find a Vet",
-                            style: TextStyle(
-                                fontSize: 16.sp, fontFamily: "Vintage Style"),
-                          ),
-                        ],
+                        ),
                       ),
                     ],
                   ),
@@ -154,92 +177,179 @@ class _MenuScreenState extends State<MenuScreen> {
                 Container(
                   width: 1.sw,
                   margin: EdgeInsets.only(
-                    top: 0.06.sh,
+                    top: 0.02.sh,
                   ),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Column(
-                        children: [
-                          ElevatedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => PharmaLoading(),
+                      Card(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(25.sp)),
+                        child: Container(
+                          padding: EdgeInsets.only(top: 0.02.sh),
+                          height: 0.2.sh,
+                          width: 0.39.sw,
+                          alignment: Alignment.center,
+                          child: Column(
+                            children: [
+                              ElevatedButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => PharmaLoading(),
+                                    ),
+                                  );
+                                },
+                                style: ButtonStyle(
+                                  elevation: WidgetStateProperty.all(0),
+                                  backgroundColor: WidgetStateProperty.all(
+                                    Colors.transparent,
+                                  ),
+                                  shape: WidgetStateProperty.all(
+                                    CircleBorder(),
+                                  ),
                                 ),
-                              );
-                            },
-                            style: ButtonStyle(
-                              elevation: MaterialStateProperty.all(0),
-                              backgroundColor: MaterialStateProperty.all(
-                                Color(0xffFAEEE2),
+                                child: Image.asset(
+                                  "assets/Find_A_Pet_Pharmacy.png",
+                                  width: 0.27.sw,
+                                  height: 0.23.sw,
+                                ),
                               ),
-                              shape: MaterialStateProperty.all(
-                                CircleBorder(),
+                              SizedBox(
+                                height: 0.01.sh,
                               ),
-                            ),
-                            child: Image.asset(
-                              "assets/Find_A_Pet_Pharmacy.png",
-                              width: 0.27.sw,
-                              height: 0.23.sw,
-                            ),
+                              Text(
+                                "Find a Pet \nPharmacy",
+                                style: TextStyle(
+                                    fontSize: 16.5.sp,
+                                    fontFamily: "Vintage Style",
+                                    height: 1.2,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
                           ),
-                          SizedBox(
-                            height: 0.005.sh,
-                          ),
-                          Text(
-                            "Find a Pet \nPharmacy",
-                            style: TextStyle(
-                              fontSize: 16.sp,
-                              fontFamily: "Vintage Style",
-                            ),
-                          ),
-                        ],
+                        ),
                       ),
-                      Column(
-                        children: [
-                          ElevatedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => SocialLoading(),
+                      Card(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(25.sp)),
+                        child: Container(
+                          padding: EdgeInsets.only(top: 0.01.sh),
+                          height: 0.2.sh,
+                          width: 0.39.sw,
+                          alignment: Alignment.center,
+                          child: Column(
+                            children: [
+                              ElevatedButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => SocialLoading(),
+                                    ),
+                                  );
+                                },
+                                style: ButtonStyle(
+                                  elevation: WidgetStateProperty.all(0),
+                                  backgroundColor: WidgetStateProperty.all(
+                                    Colors.transparent,
+                                  ),
+                                  shape: WidgetStateProperty.all(
+                                    CircleBorder(),
+                                  ),
                                 ),
-                              );
-                            },
-                            style: ButtonStyle(
-                              elevation: MaterialStateProperty.all(0),
-                              backgroundColor: MaterialStateProperty.all(
-                                Color(0xffFAEEE2),
+                                child: Image.asset(
+                                  "assets/Pet_Social.png",
+                                  fit: BoxFit.contain,
+                                  width: 0.3.sw,
+                                  height: 0.24.sw,
+                                ),
                               ),
-                              shape: MaterialStateProperty.all(
-                                CircleBorder(),
+                              SizedBox(
+                                height: 0.01.sh,
                               ),
-                            ),
-                            child: Image.asset(
-                              "assets/Pet_Social.png",
-                              fit: BoxFit.contain,
-                              width: 0.27.sw,
-                              height: 0.22.sw,
-                            ),
+                              Text(
+                                "Pet Social",
+                                style: TextStyle(
+                                    fontSize: 16.5.sp,
+                                    fontFamily: "Vintage Style",
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
                           ),
-                          SizedBox(
-                            height: 0.01.sh,
-                          ),
-                          Text(
-                            "Pet Social",
-                            style: TextStyle(
-                              fontSize: 16.sp,
-                              fontFamily: "Vintage Style",
-                            ),
-                          ),
-                        ],
+                        ),
                       ),
                     ],
                   ),
                 ),
+                SizedBox(
+                  height: 0.015.sh,
+                ),
+                Card(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.sp)),
+                  color: Color(0xff277568),
+                  child: Container(
+                    height: 0.13.sh,
+                    width: 0.87.sw,
+                    child: Expanded(
+                      child: Row(
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => PetGPTScreen(),
+                                ),
+                              );
+                            },
+                            style: ButtonStyle(
+                              elevation: WidgetStateProperty.all(0),
+                              backgroundColor: WidgetStateProperty.all(
+                                Colors.transparent,
+                              ),
+                              shape: WidgetStateProperty.all(
+                                CircleBorder(),
+                              ),
+                            ),
+                            child: Image.asset(
+                              "assets/PetGPT_Icon.png",
+                              fit: BoxFit.contain,
+                              width: 0.29.sw,
+                              height: 0.24.sw,
+                            ),
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "PetGPT",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16.5.sp,
+                                  fontFamily: "Vintage Style",
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
+                                "Get instant pet care advice",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 12.5.sp,
+                                  fontFamily: "Vintage Style",
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                )
               ]),
       ),
     );

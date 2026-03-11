@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:vet_bookr/constant.dart';
 import 'package:vet_bookr/oScreens/forgot_password.dart';
-import 'package:vet_bookr/oScreens/phone_verification_2.dart';
+import 'package:vet_bookr/oScreens/list_pet.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -50,8 +50,9 @@ class _LoginPageState extends State<LoginPage> {
        */
       Navigator.push(
         context,
-        MaterialPageRoute(
-            builder: (context) => PV2(auth: _auth, fromLogin: true)),
+        MaterialPageRoute(builder: (context) => ListPets()
+            //PV2(auth: _auth, fromLogin: true)
+            ),
       );
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
@@ -178,7 +179,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               SizedBox(height: 0.05.sh),
-              Container(
+              SizedBox(
                 height: 0.05.sh,
                 width: 0.25.sw,
                 child: TextButton(
@@ -208,7 +209,7 @@ class _LoginPageState extends State<LoginPage> {
                     });
                   },
                   child: isLoading
-                      ? Container(
+                      ? SizedBox(
                           height: 15.sp,
                           width: 15.sp,
                           child: CircularProgressIndicator(

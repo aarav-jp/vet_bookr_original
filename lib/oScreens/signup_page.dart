@@ -2,8 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:vet_bookr/constant.dart';
-import 'package:vet_bookr/oScreens/phone_verification_2.dart';
+
+import 'list_pet.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -15,11 +17,61 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   String email = "";
   String _password = "";
-
   bool isLoading = false;
 
   final passwordController = TextEditingController();
   final emailController = TextEditingController();
+
+  final GoogleSignIn _googleSignIn = GoogleSignIn.instance;
+
+  // Future<void> _signUpWithGoogle() async {
+  //   try {
+  //     // Trigger the Google Sign-In flow
+  //     final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+  //
+  //     // Check if the user canceled the sign-in
+  //     if (googleUser == null) {
+  //       return; // The user canceled the login
+  //     }
+  //
+  //     // Get authentication details from the Google account
+  //     final GoogleSignInAuthentication googleAuth =
+  //         await googleUser.authentication;
+  //
+  //     // Create a credential for Firebase authentication
+  //     final OAuthCredential credential = GoogleAuthProvider.credential(
+  //       accessToken: googleAuth.idToken,
+  //       idToken: googleAuth.idToken,
+  //     );
+  //
+  //     // Use the credential to sign in to Firebase
+  //     UserCredential userCredential =
+  //         await FirebaseAuth.instance.signInWithCredential(credential);
+  //
+  //     // Get the signed-in user
+  //     User? user = userCredential.user;
+  //
+  //     // Show a confirmation message
+  //     var bar =
+  //         SnackBar(content: Text("${user?.email} has signed up with Google"));
+  //     ScaffoldMessenger.of(context).showSnackBar(bar);
+  //
+  //     // Navigate to another screen (e.g., after login)
+  //     Navigator.pushReplacement(
+  //       context,
+  //       MaterialPageRoute(
+  //         builder: (context) => PV2(
+  //           auth: _auth,
+  //           fromLogin: false,
+  //         ), // Replace HomePage with your screen
+  //       ),
+  //     );
+  //   } on FirebaseAuthException catch (error) {
+  //     // Handle any errors that occur during the sign-in process
+  //     var bar = SnackBar(content: Text("${error.message}"));
+  //     ScaffoldMessenger.of(context).showSnackBar(bar);
+  //   }
+  // }
 
   @override
   void dispose() {
@@ -47,21 +99,17 @@ class _SignUpPageState extends State<SignUpPage> {
       ScaffoldMessenger.of(context).showSnackBar(bar);
       Navigator.push(
         context,
-        MaterialPageRoute(
-            builder: (context) => PV2(
-                  auth: _auth,
-                  fromLogin: false,
-                )),
+        MaterialPageRoute(builder: (context) => ListPets()
+            // PV2(
+            //   auth: _auth,
+            //   fromLogin: false,
+            // )
+            ),
       );
     } on FirebaseAuthException catch (error) {
       var bar = SnackBar(content: Text("${error.message}"));
       ScaffoldMessenger.of(context).showSnackBar(bar);
     }
-
-    // Navigator.push(
-    //   context,
-    //   MaterialPageRoute(builder: (context) => PV2(auth: _auth)),
-    // );
   }
 
   tField({String? hText}) {
@@ -159,7 +207,7 @@ class _SignUpPageState extends State<SignUpPage> {
             tpField(hText: 'Password'),
             //sBox(h: 2),
             SizedBox(height: 0.05.sh),
-            Container(
+            SizedBox(
               height: 0.05.sh,
               width: 0.25.sw,
               child: TextButton(
@@ -186,7 +234,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   }
                 },
                 child: isLoading
-                    ? Container(
+                    ? SizedBox(
                         height: 15.sp,
                         width: 15.sp,
                         child: CircularProgressIndicator(
