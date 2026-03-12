@@ -16,6 +16,7 @@ class VetsMaps extends StatefulWidget {
   VetsMaps({Key? key, required this.vetClinic, this.latLong}) : super(key: key);
   VetClinic vetClinic;
   List<double>? latLong;
+
   @override
   State<VetsMaps> createState() => _VetsMapsState();
 }
