@@ -51,9 +51,11 @@ class _SocialLoadingState extends State<SocialLoading> {
             height: 0.05.sh,
           ),
           ElevatedButton(
-              style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all(Color(0xffFF8B6A))),
+              style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.sp),
+                  ),
+                  backgroundColor: Color(0xffFF8B6A)),
               onPressed: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => PetSocialFilter()));

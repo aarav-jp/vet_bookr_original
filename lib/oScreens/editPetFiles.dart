@@ -230,7 +230,9 @@ class _EditPetFilesState extends State<EditPetFiles> {
                       : Text(
                           "Save",
                           style: TextStyle(
-                              fontSize: 12.sp, fontWeight: FontWeight.w400),
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.white),
                         )),
             ),
             Container(
@@ -289,7 +291,9 @@ class _EditPetFilesState extends State<EditPetFiles> {
                     : Text(
                         "Delete Pet Files",
                         style: TextStyle(
-                            fontWeight: FontWeight.w400, fontSize: 11.2.sp),
+                            fontWeight: FontWeight.w400,
+                            fontSize: 11.2.sp,
+                            color: Colors.white),
                       ),
               ),
             ),

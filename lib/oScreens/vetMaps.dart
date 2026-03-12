@@ -186,6 +186,8 @@ class _VetsMapsState extends State<VetsMaps> {
         systemOverlayStyle: SystemUiOverlayStyle.dark,
         backgroundColor: Colors.transparent,
         elevation: 0,
+        scrolledUnderElevation: 0,
+        surfaceTintColor: kBackgroundColor,
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,
@@ -321,6 +323,10 @@ class _VetsMapsState extends State<VetsMaps> {
                               },
                               child: Text(
                                 "Navigate",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 15.sp,
+                                ),
                               ),
                             ),
                           ),

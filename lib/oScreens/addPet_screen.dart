@@ -340,6 +340,7 @@ class _AddPetHomeState extends State<AddPetHome> {
                           style: TextStyle(
                             fontSize: 0.03.sw,
                             fontWeight: FontWeight.w400,
+                            color: Colors.white,
                           ),
                         )),
             ),

@@ -59,6 +59,7 @@ class _AddPetFilesState extends State<AddPetFiles> {
   String imageUrl = "";
   List<String> imageUrlList = [];
   int index = 0;
+
   Future<void> uploadImages(
       {required String path, required String name}) async {
     try {
@@ -241,8 +242,10 @@ class _AddPetFilesState extends State<AddPetFiles> {
                   },
                   child: Text(
                     "Upload Records",
-                    style:
-                        TextStyle(fontWeight: FontWeight.w400, fontSize: 12.sp),
+                    style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 12.sp,
+                        color: Colors.white),
                   )),
             ),
             Container(
@@ -300,7 +303,9 @@ class _AddPetFilesState extends State<AddPetFiles> {
                       : Text(
                           "Submit",
                           style: TextStyle(
-                              fontSize: 12.sp, fontWeight: FontWeight.w400),
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.white),
                         )),
             ),
           ],

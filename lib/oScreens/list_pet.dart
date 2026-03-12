@@ -43,9 +43,13 @@ class _ListPetsState extends State<ListPets> {
         backgroundColor: Color(0xffFF8B6A),
         label: Text(
           "Add Pet",
-          style: TextStyle(fontSize: 0.03.sw),
+          style: TextStyle(fontSize: 0.03.sw, color: Colors.white),
         ),
-        icon: Icon(Icons.add, size: 0.05.sw),
+        icon: Icon(
+          Icons.add,
+          size: 0.05.sw,
+          color: Colors.white,
+        ),
       ),
       appBar: AppBar(
         systemOverlayStyle: SystemUiOverlayStyle.dark,

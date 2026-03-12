@@ -47,7 +47,7 @@ class _PetFilesState extends State<PetFiles> {
         backgroundColor: Color(0xffFF8B6A),
         label: Text(
           "Add Pet Files",
-          style: TextStyle(fontSize: 0.03.sw),
+          style: TextStyle(fontSize: 0.03.sw, color: Colors.white),
         ),
         icon: Icon(
           Icons.add,

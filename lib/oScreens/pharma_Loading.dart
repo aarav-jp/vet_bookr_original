@@ -54,9 +54,11 @@ class _PharmaLoadingState extends State<PharmaLoading> {
               height: 0.05.sh,
             ),
             ElevatedButton(
-                style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all(Color(0xffFF8B6A))),
+                style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.sp),
+                    ),
+                    backgroundColor: Color(0xffFF8B6A)),
                 onPressed: () {
                   Navigator.push(
                       context,
@@ -75,9 +77,10 @@ class _PharmaLoadingState extends State<PharmaLoading> {
                   ),
                 )),
             ElevatedButton(
-              style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all(Color(0xffD4F0FF))),
+              style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.sp)),
+                  backgroundColor: Color(0xffD4F0FF)),
               onPressed: () {
                 Navigator.push(
                     context,
@@ -91,7 +94,7 @@ class _PharmaLoadingState extends State<PharmaLoading> {
                   style: TextStyle(
                       color: Color(0xff8B8B8C),
                       fontWeight: FontWeight.w400,
-                      fontSize: 10.9.sp),
+                      fontSize: 11.5.sp),
                   textAlign: TextAlign.center,
                 ),
               ),
