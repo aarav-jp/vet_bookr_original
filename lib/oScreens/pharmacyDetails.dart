@@ -8,7 +8,6 @@ import 'package:vet_bookr/models/pharmacy.dart';
 import 'package:http/http.dart' as http;
 import 'package:vet_bookr/models/total_data_pharmacy.dart';
 
-import '../utils/constants.dart';
 
 class PharmacyDetails extends StatelessWidget {
   late Pharmacy pharmacy;

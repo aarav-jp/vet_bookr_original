@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart' as http;
-import '../constant.dart';
+import '../../constant.dart';
 
 class PetGPTScreen extends StatefulWidget {
   const PetGPTScreen({super.key});

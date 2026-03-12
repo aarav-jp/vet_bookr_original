@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+// import 'package:google_sign_in/google_sign_in.dart';
 import 'package:vet_bookr/constant.dart';
 
 import 'list_pet.dart';
@@ -22,7 +22,7 @@ class _SignUpPageState extends State<SignUpPage> {
   final passwordController = TextEditingController();
   final emailController = TextEditingController();
 
-  final GoogleSignIn _googleSignIn = GoogleSignIn.instance;
+  // final GoogleSignIn _googleSignIn = GoogleSignIn.instance;
 
   // Future<void> _signUpWithGoogle() async {
   //   try {

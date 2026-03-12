@@ -104,7 +104,7 @@ class _EditPetFilesState extends State<EditPetFiles> {
                                       ),
                                       textButtonTheme: TextButtonThemeData(
                                         style: TextButton.styleFrom(
-                                          primary: Color(
+                                          foregroundColor: Color(
                                               0xffFF8B6A), // button text color
                                         ),
                                       ),

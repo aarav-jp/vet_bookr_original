@@ -188,7 +188,7 @@ class _AddPetHomeState extends State<AddPetHome> {
                                             textButtonTheme:
                                                 TextButtonThemeData(
                                               style: TextButton.styleFrom(
-                                                primary: Color(
+                                                foregroundColor: Color(
                                                     0xffFF8B6A), // button text color
                                               ),
                                             ),

@@ -109,17 +109,21 @@ class _VetsMapsState extends State<VetsMaps> {
     List<LatLng> polylineCoordinates = [];
 
     PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
-      Constants.apiKey,
-      PointLatLng(latLng[0], latLng[1]),
-      PointLatLng(widget.vetClinic.lat, widget.vetClinic.lng),
-      travelMode: TravelMode.driving,
+      request: PolylineRequest(
+        origin: PointLatLng(latLng[0], latLng[1]),
+        destination: PointLatLng(widget.vetClinic.lat, widget.vetClinic.lng),
+        mode: TravelMode.driving,
+      ),
+      googleApiKey: Constants.apiKey,
     );
 
     if (result.points.isNotEmpty) {
-      result.points.forEach((PointLatLng point) {
-        polylineCoordinates.add(LatLng(point.latitude, point.longitude));
-      });
-    } else {}
+      for (var point in result.points) {
+        polylineCoordinates.add(
+          LatLng(point.latitude, point.longitude),
+        );
+      }
+    }
 
     addPolyLine(polylineCoordinates);
     //   String vetsUrl = "https://maps.googleapis.com/maps/api/directions/json?"
