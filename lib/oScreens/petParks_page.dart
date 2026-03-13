@@ -188,7 +188,7 @@ class _PetParksPageState extends State<PetParksPage>
       currentLatLng = latLng;
 
       final String vetsUrl =
-          "https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=pet+boarding&location=${latLng[0]},${latLng[1]}&radius=$apiChanger&type=pet_boarding&key=${Constants.apiKey}";
+          "https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=pet+park&location=${latLng[0]},${latLng[1]}&radius=$apiChanger&type=park&key=${Constants.apiKey}";
       final response = await http
           .get(Uri.parse(vetsUrl))
           .timeout(const Duration(seconds: 15));

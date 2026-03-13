@@ -123,16 +123,39 @@ class _PetBoardersPageState extends State<PetBoardersPage>
   }
 
   Future<Position?> determinePosition() async {
-    final bool isLocationEnabled =
-    await Geolocator.isLocationServiceEnabled();
+    bool isLocationEnabled = await Geolocator.isLocationServiceEnabled();
 
     if (!isLocationEnabled) {
-      await _showLocationOffDialog();
+      await showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text('Location is turned off'),
+            content: const Text(
+                'Please turn on your phone location to find nearby pet parks.'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text('Cancel'),
+              ),
+              TextButton(
+                onPressed: () async {
+                  Navigator.pop(context);
+                  await Geolocator.openLocationSettings();
+                },
+                child: const Text('Turn On'),
+              ),
+            ],
+          );
+        },
+      );
+
       return null;
     }
 
-    LocationPermission locationPermission =
-    await Geolocator.checkPermission();
+    LocationPermission locationPermission = await Geolocator.checkPermission();
 
     if (locationPermission == LocationPermission.denied) {
       locationPermission = await Geolocator.requestPermission();
@@ -143,93 +166,50 @@ class _PetBoardersPageState extends State<PetBoardersPage>
     }
 
     if (locationPermission == LocationPermission.deniedForever) {
-      await _showPermissionDeniedForeverDialog();
+      await Geolocator.openAppSettings();
       return null;
     }
 
-    try {
-      return await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high,
-        timeLimit: const Duration(seconds: 10),
-      );
-    } catch (_) {
-      return await Geolocator.getLastKnownPosition();
-    }
+    return await Geolocator.getCurrentPosition();
   }
 
   Future<List<double>?> getLatLng() async {
-    final Position? position = await determinePosition();
+    Position? position = await determinePosition();
 
-    if (position == null) return null;
+    if (position == null) {
+      return null;
+    }
 
     return [position.latitude, position.longitude];
   }
 
   Future<void> getTotalData() async {
+    List<double>? latLng = await getLatLng();
+
+    if (latLng == null) {
+      setState(() {
+        isLoading = false;
+      });
+      return;
+    }
+
+    String vetsUrl =
+        "https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=pet+boarding&location=${latLng[0]},${latLng[1]}&radius=$apiChanger&type=pet_boarding  &key=${Constants.apiKey}";
+
+    final response = await http.get(Uri.parse(vetsUrl));
+
+    final Map<String, dynamic> data = jsonDecode(response.body);
+
+
+    vetClinic = (data["results"] as List).map((vetJson) {
+      return VetClinic.fromJson(vetJson);
+    }).toList();
+
     if (!mounted) return;
 
     setState(() {
-      isLoading = true;
-      errorMessage = null;
+      isLoading = false;
     });
-
-    try {
-      final List<double>? latLng = await getLatLng();
-
-      if (latLng == null) {
-        if (!mounted) return;
-        setState(() {
-          isLoading = false;
-          errorMessage = 'Please turn on your phone location to continue using this feature.';
-        });
-        return;
-      }
-
-      currentLatLng = latLng;
-
-      final String vetsUrl =
-          "https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=pet+boarding&location=${latLng[0]},${latLng[1]}&radius=$apiChanger&type=pet_boarding&key=${Constants.apiKey}";
-      final response = await http
-          .get(Uri.parse(vetsUrl))
-          .timeout(const Duration(seconds: 15));
-
-      if (response.statusCode != 200) {
-        throw Exception('Failed to load boarders. Server error ${response.statusCode}.');
-      }
-
-      final decodedBody = utf8.decode(response.bodyBytes);
-      final Map<String, dynamic> data = jsonDecode(decodedBody);
-
-      if (data["results"] == null || data["results"] is! List) {
-        throw Exception('No boarders found right now.');
-      }
-
-      final List<VetClinic> loadedClinics =
-      (data["results"] as List).map((vetJson) {
-        return VetClinic.fromJson(vetJson);
-      }).toList();
-
-      if (!mounted) return;
-      setState(() {
-        vetClinic = loadedClinics;
-        isLoading = false;
-        errorMessage = loadedClinics.isEmpty
-            ? 'No pet boarders found in this area.'
-            : null;
-      });
-    } on TimeoutException {
-      if (!mounted) return;
-      setState(() {
-        isLoading = false;
-        errorMessage = 'The request took too long. Please try again.';
-      });
-    } catch (e) {
-      if (!mounted) return;
-      setState(() {
-        isLoading = false;
-        errorMessage = e.toString().replaceFirst('Exception: ', '');
-      });
-    }
   }
 
   Widget clinicTile(VetClinic data) {
