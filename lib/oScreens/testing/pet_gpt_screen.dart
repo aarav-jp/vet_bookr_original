@@ -1,8 +1,10 @@
 import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart' as http;
+
 import '../../constant.dart';
 
 class PetGPTScreen extends StatefulWidget {
@@ -13,7 +15,6 @@ class PetGPTScreen extends StatefulWidget {
 }
 
 class _PetGPTScreenState extends State<PetGPTScreen> {
-
   final TextEditingController _controller = TextEditingController();
   final ScrollController _scrollController = ScrollController();
 
@@ -35,14 +36,10 @@ class _PetGPTScreenState extends State<PetGPTScreen> {
   }
 
   Future<void> sendMessage(String text) async {
-
     if (text.trim().isEmpty) return;
 
     setState(() {
-      messages.add({
-        "role": "user",
-        "content": text
-      });
+      messages.add({"role": "user", "content": text});
       isLoading = true;
     });
 
@@ -51,21 +48,18 @@ class _PetGPTScreenState extends State<PetGPTScreen> {
     scrollToBottom();
 
     try {
-
       final response = await http.post(
         Uri.parse('https://llamaaimodel.cto-ee4.workers.dev/pet'),
         headers: {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer HelloTest',
         },
-        body: jsonEncode({
-          "question": text
-        }),
+        body: jsonEncode({"question": text}),
       );
 
       if (response.statusCode == 200) {
-
-        final data = jsonDecode(response.body);
+        final decodedBody = utf8.decode(response.bodyBytes);
+        final data = jsonDecode(decodedBody);
 
         setState(() {
           messages.add({
@@ -73,27 +67,18 @@ class _PetGPTScreenState extends State<PetGPTScreen> {
             "content": data["answer"] ?? "No response"
           });
         });
-
       } else {
-
         setState(() {
           messages.add({
             "role": "assistant",
             "content": "Server error: ${response.statusCode}"
           });
         });
-
       }
-
     } catch (e) {
-
       setState(() {
-        messages.add({
-          "role": "assistant",
-          "content": "Something went wrong."
-        });
+        messages.add({"role": "assistant", "content": "Something went wrong."});
       });
-
     }
 
     setState(() {
@@ -104,7 +89,6 @@ class _PetGPTScreenState extends State<PetGPTScreen> {
   }
 
   Widget chatBubble(String text, bool isUser) {
-
     return Container(
       width: 1.sw,
       padding: EdgeInsets.symmetric(horizontal: 0.05.sw, vertical: 0.01.sh),
@@ -114,9 +98,7 @@ class _PetGPTScreenState extends State<PetGPTScreen> {
           padding: EdgeInsets.all(12.sp),
           constraints: BoxConstraints(maxWidth: 0.75.sw),
           decoration: BoxDecoration(
-            color: isUser
-                ? const Color(0xffFF8B6A)
-                : const Color(0xffFAEEE2),
+            color: isUser ? const Color(0xffFF8B6A) : const Color(0xffFAEEE2),
             borderRadius: BorderRadius.circular(14.sp),
           ),
           child: Text(
@@ -135,16 +117,17 @@ class _PetGPTScreenState extends State<PetGPTScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     final h = MediaQuery.of(context).size.height;
     final w = MediaQuery.of(context).size.width;
 
     return Scaffold(
-
       appBar: AppBar(
         systemOverlayStyle: SystemUiOverlayStyle.dark,
         backgroundColor: kBackgroundColor,
         elevation: 0,
+        scrolledUnderElevation: 0,
+        surfaceTintColor: Colors.transparent,
+        shadowColor: Colors.transparent,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
@@ -152,15 +135,12 @@ class _PetGPTScreenState extends State<PetGPTScreen> {
           },
         ),
       ),
-
       backgroundColor: kBackgroundColor,
-
       body: SizedBox(
         height: h,
         width: w,
         child: Column(
           children: [
-
             SizedBox(height: 10.h),
 
             Text(
@@ -177,25 +157,24 @@ class _PetGPTScreenState extends State<PetGPTScreen> {
             Expanded(
               child: messages.isEmpty
                   ? Center(
-                child: Text(
-                  "Ask anything about your pet 🐶",
-                  style: TextStyle(fontSize: 15.sp),
-                ),
-              )
+                      child: Text(
+                        "Ask anything about your pet 🐶",
+                        style: TextStyle(fontSize: 15.sp),
+                      ),
+                    )
                   : ListView.builder(
-                controller: _scrollController,
-                padding: EdgeInsets.only(bottom: 10.h),
-                itemCount: messages.length,
-                itemBuilder: (context, index) {
+                      controller: _scrollController,
+                      padding: EdgeInsets.only(bottom: 10.h),
+                      itemCount: messages.length,
+                      itemBuilder: (context, index) {
+                        final msg = messages[index];
 
-                  final msg = messages[index];
-
-                  return chatBubble(
-                    msg["content"]!,
-                    msg["role"] == "user",
-                  );
-                },
-              ),
+                        return chatBubble(
+                          msg["content"]!,
+                          msg["role"] == "user",
+                        );
+                      },
+                    ),
             ),
 
             if (isLoading)
@@ -212,10 +191,8 @@ class _PetGPTScreenState extends State<PetGPTScreen> {
                 horizontal: 0.04.sw,
                 vertical: 0.01.sh,
               ),
-
               child: Row(
                 children: [
-
                   Expanded(
                     child: TextField(
                       controller: _controller,
@@ -233,9 +210,7 @@ class _PetGPTScreenState extends State<PetGPTScreen> {
                       ),
                     ),
                   ),
-
                   SizedBox(width: 8.w),
-
                   CircleAvatar(
                     backgroundColor: const Color(0xffFF8B6A),
                     child: IconButton(

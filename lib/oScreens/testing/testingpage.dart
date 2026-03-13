@@ -10,8 +10,8 @@ import 'package:vet_bookr/oScreens/petResorts_page.dart';
 import 'package:vet_bookr/oScreens/petRestaurants_page.dart';
 import 'package:vet_bookr/oScreens/petTrainers_page.dart';
 
-class PetSocialFilter extends StatelessWidget {
-  const PetSocialFilter({Key? key}) : super(key: key);
+class PetSocialFilterTest extends StatelessWidget {
+  const PetSocialFilterTest({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
