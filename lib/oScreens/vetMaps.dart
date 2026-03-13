@@ -292,13 +292,13 @@ class _VetsMapsState extends State<VetsMaps> {
                             onMapCreated: _onMapCreated,
                             gestureRecognizers: Set()
                               ..add(Factory<PanGestureRecognizer>(
-                                  () => PanGestureRecognizer()))
+                                      () => PanGestureRecognizer()))
                               ..add(Factory<ScaleGestureRecognizer>(
-                                  () => ScaleGestureRecognizer()))
+                                      () => ScaleGestureRecognizer()))
                               ..add(Factory<TapGestureRecognizer>(
-                                  () => TapGestureRecognizer()))
+                                      () => TapGestureRecognizer()))
                               ..add(Factory<VerticalDragGestureRecognizer>(
-                                  () => VerticalDragGestureRecognizer())),
+                                      () => VerticalDragGestureRecognizer())),
                             markers: _markers,
                             initialCameraPosition: CameraPosition(
                               //innital position in map

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart' as http;
 
@@ -95,22 +96,42 @@ class _PetGPTScreenState extends State<PetGPTScreen> {
       child: Align(
         alignment: isUser ? Alignment.centerRight : Alignment.centerLeft,
         child: Container(
-          padding: EdgeInsets.all(12.sp),
-          constraints: BoxConstraints(maxWidth: 0.75.sw),
-          decoration: BoxDecoration(
-            color: isUser ? const Color(0xffFF8B6A) : const Color(0xffFAEEE2),
-            borderRadius: BorderRadius.circular(14.sp),
-          ),
-          child: Text(
-            text.replaceAll(r'\n', '\n'),
-            softWrap: true,
-            style: TextStyle(
-              fontSize: 14.sp,
-              height: 1.4,
-              color: isUser ? Colors.white : Colors.black87,
+            padding: EdgeInsets.all(12.sp),
+            constraints: BoxConstraints(maxWidth: 0.75.sw),
+            decoration: BoxDecoration(
+              color: isUser ? const Color(0xffFF8B6A) : const Color(0xffFAEEE2),
+              borderRadius: BorderRadius.circular(14.sp),
             ),
-          ),
-        ),
+            child: MarkdownBody(
+                data: text.replaceAll(r'\n', '\n'),
+              selectable: false,
+              styleSheet: MarkdownStyleSheet(
+                p: TextStyle(
+                  fontSize: 14.sp,
+                  height: 1.4,
+                  color: isUser ? Colors.white : Colors.black87,
+                ),
+                strong: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14.sp,
+                  color: isUser ? Colors.white : Colors.black87
+                ),
+                listBullet: TextStyle(
+                  fontSize: 14.sp,
+                  color: isUser ? Colors.white : Colors.black87
+                )
+              ),
+            )
+            // Text(
+            //   text.replaceAll(r'\n', '\n'),
+            //   softWrap: true,
+            //   style: TextStyle(
+            //     fontSize: 14.sp,
+            //     height: 1.4,
+            //     color: isUser ? Colors.white : Colors.black87,
+            //   ),
+            // ),
+            ),
       ),
     );
   }

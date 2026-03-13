@@ -52,6 +52,7 @@ class _PetFilesState extends State<PetFiles> {
         icon: Icon(
           Icons.add,
           size: 0.05.sw,
+          color: Colors.white,
         ),
       ),
       appBar: AppBar(
