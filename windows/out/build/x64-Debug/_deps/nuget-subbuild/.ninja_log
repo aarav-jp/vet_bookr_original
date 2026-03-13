@@ -1,0 +1,13 @@
+# ninja log v5
+1	471	7941368448159593	nuget-populate-prefix/src/nuget-populate-stamp/nuget-populate-mkdir	164b2f3c710b8777
+2522	2675	7941368470230119	nuget-populate-prefix/src/nuget-populate-stamp/nuget-populate-update	346061c430eb4493
+2819	3034	7941368473800133	nuget-populate-prefix/src/nuget-populate-stamp/nuget-populate-copyfile	fc205c52458bf55e
+472	2522	7941368468676872	nuget-populate-prefix/src/nuget-populate-stamp/nuget-populate-download	a6907e8f0a290ace
+2675	2819	7941368471669575	nuget-populate-prefix/src/nuget-populate-stamp/nuget-populate-patch	3cd91e582e920515
+3347	3503	7941368478502039	nuget-populate-prefix/src/nuget-populate-stamp/nuget-populate-install	60a67683dfa75f93
+2819	3034	7941368473800133	C:/Users/HP_Demo/vet_bookr_original/windows/out/build/x64-Debug/_deps/nuget-src/nuget.exe	fc205c52458bf55e
+3185	3347	7941368476942733	nuget-populate-prefix/src/nuget-populate-stamp/nuget-populate-build	4bbfc625251f0d04
+3035	3184	7941368475322033	nuget-populate-prefix/src/nuget-populate-stamp/nuget-populate-configure	8c4b50bc5dccfa4
+3503	3656	7941368480035396	nuget-populate-prefix/src/nuget-populate-stamp/nuget-populate-test	a25a4502bca317fd
+3657	3878	7941368482246829	CMakeFiles/nuget-populate-complete	d23839077d4c6a7b
+3657	3878	7941368482246829	nuget-populate-prefix/src/nuget-populate-stamp/nuget-populate-done	d23839077d4c6a7b
