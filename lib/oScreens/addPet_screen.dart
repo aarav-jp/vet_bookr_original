@@ -142,8 +142,20 @@ class _AddPetHomeState extends State<AddPetHome> {
                     ),
                   ),
                   SizedBox(
-                    height: 15,
+                    height: 20,
                   ),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 0.01.sh),
+                    child: Center(
+                      child: Text(
+                          textAlign: TextAlign.center,
+                          "This app uploads images you select to our secure servers to enable pet services and clinic features."),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 7,
+                  ),
+
                   ...List.generate(
                     4,
                     (index) => Padding(
