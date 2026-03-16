@@ -103,24 +103,21 @@ class _PetGPTScreenState extends State<PetGPTScreen> {
               borderRadius: BorderRadius.circular(14.sp),
             ),
             child: MarkdownBody(
-                data: text.replaceAll(r'\n', '\n'),
+              data: text.replaceAll(r'\n', '\n'),
               selectable: false,
               styleSheet: MarkdownStyleSheet(
-                p: TextStyle(
-                  fontSize: 14.sp,
-                  height: 1.4,
-                  color: isUser ? Colors.white : Colors.black87,
-                ),
-                strong: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 14.sp,
-                  color: isUser ? Colors.white : Colors.black87
-                ),
-                listBullet: TextStyle(
-                  fontSize: 14.sp,
-                  color: isUser ? Colors.white : Colors.black87
-                )
-              ),
+                  p: TextStyle(
+                    fontSize: 14.sp,
+                    height: 1.4,
+                    color: isUser ? Colors.white : Colors.black87,
+                  ),
+                  strong: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14.sp,
+                      color: isUser ? Colors.white : Colors.black87),
+                  listBullet: TextStyle(
+                      fontSize: 14.sp,
+                      color: isUser ? Colors.white : Colors.black87)),
             )
             // Text(
             //   text.replaceAll(r'\n', '\n'),
@@ -142,6 +139,7 @@ class _PetGPTScreenState extends State<PetGPTScreen> {
     final w = MediaQuery.of(context).size.width;
 
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         systemOverlayStyle: SystemUiOverlayStyle.dark,
         backgroundColor: kBackgroundColor,
@@ -212,36 +210,38 @@ class _PetGPTScreenState extends State<PetGPTScreen> {
                 horizontal: 0.04.sw,
                 vertical: 0.01.sh,
               ),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: TextField(
-                      controller: _controller,
-                      onSubmitted: (value) {
-                        sendMessage(value);
-                      },
-                      decoration: InputDecoration(
-                        hintText: "Ask PetGPT...",
-                        filled: true,
-                        fillColor: Colors.white,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10.sp),
-                          borderSide: BorderSide.none,
+              child: SafeArea(
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: TextField(
+                        controller: _controller,
+                        onSubmitted: (value) {
+                          sendMessage(value);
+                        },
+                        decoration: InputDecoration(
+                          hintText: "Ask PetGPT...",
+                          filled: true,
+                          fillColor: Colors.white,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.sp),
+                            borderSide: BorderSide.none,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  SizedBox(width: 8.w),
-                  CircleAvatar(
-                    backgroundColor: const Color(0xffFF8B6A),
-                    child: IconButton(
-                      icon: const Icon(Icons.send, color: Colors.white),
-                      onPressed: () {
-                        sendMessage(_controller.text);
-                      },
-                    ),
-                  )
-                ],
+                    SizedBox(width: 8.w),
+                    CircleAvatar(
+                      backgroundColor: const Color(0xffFF8B6A),
+                      child: IconButton(
+                        icon: const Icon(Icons.send, color: Colors.white),
+                        onPressed: () {
+                          sendMessage(_controller.text);
+                        },
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
 

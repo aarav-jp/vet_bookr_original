@@ -22,7 +22,7 @@
           }
         },
         {
-          "client_id": "916421099888-tln5a9s23hn0c8pg5u9vi71sg3h80kau.apps.googleusercontent.com",
+          "client_id": "916421099888-fmsdrf1i8lgonshpi1brvq3gsrggqhrj.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -35,7 +35,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "916421099888-tln5a9s23hn0c8pg5u9vi71sg3h80kau.apps.googleusercontent.com",
+              "client_id": "916421099888-d293m9bil6sqorjgfpb66sgtgpa2sunb.apps.googleusercontent.com",
               "client_type": 3
             },
             {
@@ -58,7 +58,39 @@
       },
       "oauth_client": [
         {
-          "client_id": "916421099888-tln5a9s23hn0c8pg5u9vi71sg3h80kau.apps.googleusercontent.com",
+          "client_id": "916421099888-ddi5roqbu7gic329u03tgcn158p59enl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vetBookr.vet_bookr",
+            "certificate_hash": "008c94ba9348d748f963cb9bf8f8fd86c8cfa283"
+          }
+        },
+        {
+          "client_id": "916421099888-nganlk469456e200dntm1fflhfhp5uu5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vetBookr.vet_bookr",
+            "certificate_hash": "7f3eed7557a25900b87faf5221f61509b3fb4e00"
+          }
+        },
+        {
+          "client_id": "916421099888-nuvsog5ch40l35sie2lag884pgel8luc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vetBookr.vet_bookr",
+            "certificate_hash": "16ff3c5cc3f0a58ea4366d80da2d6d5068dfffd8"
+          }
+        },
+        {
+          "client_id": "916421099888-r4bh0e35pg50jap4bodq0hlq20pof576.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vetBookr.vet_bookr",
+            "certificate_hash": "9bcb46e61aeda147673ec09188c66197158b6184"
+          }
+        },
+        {
+          "client_id": "916421099888-fmsdrf1i8lgonshpi1brvq3gsrggqhrj.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -71,7 +103,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "916421099888-tln5a9s23hn0c8pg5u9vi71sg3h80kau.apps.googleusercontent.com",
+              "client_id": "916421099888-d293m9bil6sqorjgfpb66sgtgpa2sunb.apps.googleusercontent.com",
               "client_type": 3
             },
             {
