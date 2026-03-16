@@ -249,12 +249,11 @@ class _MenuScreenState extends State<MenuScreen> {
                                   Text(
                                     "Find a Pet \nPharmacy",
                                     style: TextStyle(
-                                        fontSize: 16.5.sp,
+                                        fontSize: 16.sp,
                                         fontFamily: "Vintage Style",
-                                        height: 1.2,
+                                        height: 0.85.sp,
                                         fontWeight: FontWeight.bold),
-                                  ),
-                                ],
+                                  ),]
                               ),
                             ),
                           ),
@@ -272,7 +271,7 @@ class _MenuScreenState extends State<MenuScreen> {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(25.sp)),
                             child: Container(
-                              padding: EdgeInsets.only(top: 0.01.sh),
+                              padding: EdgeInsets.only(top: 0.01.sh, right: 0.05.sw),
                               height: 0.2.sh,
                               width: 0.39.sw,
                               alignment: Alignment.center,
@@ -340,62 +339,48 @@ class _MenuScreenState extends State<MenuScreen> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20.sp)),
                         color: Color(0xff277568),
-                        child: Expanded(
-                          child: Container(
-                            height: 0.13.sh,
-                            child: Row(
-                              children: [
-                                ElevatedButton(
-                                  onPressed: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => PetGPTScreen(),
-                                      ),
-                                    );
-                                  },
-                                  style: ButtonStyle(
-                                    elevation: WidgetStateProperty.all(0),
-                                    backgroundColor: WidgetStateProperty.all(
-                                      Colors.transparent,
-                                    ),
-                                    shape: WidgetStateProperty.all(
-                                      CircleBorder(),
-                                    ),
-                                  ),
-                                  child: Image.asset(
-                                    "assets/PetGPT_Icon.png",
-                                    fit: BoxFit.contain,
-                                    width: 0.29.sw,
-                                    height: 0.24.sw,
-                                  ),
+                        child: Container(
+                          height: 0.13.sh,
+                          child: Row(
+                            children: [
+
+                              Padding(
+                                padding: EdgeInsets.only(left: 0.023.sw, right: 0.02.sw),
+                                child: Image.asset(
+                                  "assets/PetGPT_Icon.png",
+                                  fit: BoxFit.contain,
+                                  width: 0.29.sw,
+                                  height: 0.24.sw,
                                 ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      "PetGPT",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 16.5.sp,
-                                        fontFamily: "Vintage Style",
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "PetGPT",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16.5.sp,
+                                      fontFamily: "Vintage Style",
+                                      fontWeight: FontWeight.bold,
                                     ),
-                                    Text(
+                                  ),
+                                  Container(
+                                    padding: EdgeInsets.only(right: 0.02.sw),
+                                    child: Text(
                                       "Get instant pet care advice",
                                       style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: 12.5.sp,
+                                        fontSize: 12.sp,
                                         fontFamily: "Vintage Style",
                                         overflow: TextOverflow.visible
                                       ),
                                     ),
-                                  ],
-                                ),
-                              ],
-                            ),
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
                         ),
                       ),
