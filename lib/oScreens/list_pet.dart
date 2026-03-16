@@ -135,8 +135,12 @@ class _ListPetsState extends State<ListPets> {
                       AsyncSnapshot<DocumentSnapshot<Map<String, dynamic>>>
                           snapshot) {
                     if (snapshot.hasData) {
-                      var pets = snapshot.data?.data()!["pets"];
-                      if (pets.length == 0) {
+                      var data = snapshot.data?.data();
+                      List pets = data?["pets"] ?? [];
+
+                      print(pets);
+
+                      if (pets.isEmpty) {
                         return Container(
                           height: 0.4.sh,
                           width: 1.sw,
@@ -150,6 +154,7 @@ class _ListPetsState extends State<ListPets> {
                           ),
                         );
                       }
+
                       return GridView.builder(
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
