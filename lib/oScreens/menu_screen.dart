@@ -100,7 +100,7 @@ class _MenuScreenState extends State<MenuScreen> {
                                 children: [
                                   ElevatedButton(
                                     onPressed: () {
-                                      checkLogin()
+                                      checkLogin();
                                     },
                                     style: ButtonStyle(
                                       elevation: WidgetStateProperty.all(0),
