@@ -258,7 +258,7 @@ class _AddPetHomeState extends State<AddPetHome> {
   }
 
   Future<void> addPetToFireStore(Map<String, dynamic> addedPet) async {
-    var doc = FirebaseFirestore.instance.collection("petDetails").doc();
+    var doc = FirebaseFirestore.instance.collection("petsDetails").doc();
     addedPet.update("id", (value) => doc.id);
     await uploadImages(path: profilePic!.path, id: doc.id);
     addedPet.update("profilePicture", (value) => imageUrl);
@@ -270,7 +270,7 @@ class _AddPetHomeState extends State<AddPetHome> {
     await FirebaseFirestore.instance
         .collection("users")
         .doc(FirebaseAuth.instance.currentUser?.uid)
-        .update({
+        .set({
       "pets": FieldValue.arrayUnion([doc.id])
     });
   }

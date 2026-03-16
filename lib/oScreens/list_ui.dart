@@ -1,11 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:vet_bookr/oScreens/showPetScreen.dart';
-
-import '../constant.dart';
-import 'addPet_screen.dart';
 
 class ListUI extends StatefulWidget {
   ListUI({Key? key, required this.id}) : super(key: key);
@@ -77,7 +73,7 @@ class _ListUIState extends State<ListUI> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(top: 0.01.sh),
+                      padding: EdgeInsets.only(top: 0.001.sh),
                       child: Text(
                         "${details["name"]}",
                         style: TextStyle(
@@ -89,7 +85,7 @@ class _ListUIState extends State<ListUI> {
                       child: Container(
                         width: 0.45.sw,
                         padding: EdgeInsets.only(
-                          top: 0.01.sh,
+                          top: 0.003.sh,
                         ),
                         child: Text(
                           "${details["breed"]}",
