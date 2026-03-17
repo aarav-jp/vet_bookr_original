@@ -146,7 +146,10 @@ class _DeleteUserState extends State<DeleteUser> {
               padding: EdgeInsets.only(left: 0.05.sw),
               child: Text(
                 "Please know that this action is irreversible.",
-                style: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w400),
+                style: TextStyle(
+                  fontSize: 15.sp,
+                  fontWeight: FontWeight.w400,
+                ),
               ),
             ),
             SizedBox(
@@ -243,7 +246,9 @@ class _DeleteUserState extends State<DeleteUser> {
                     : Text(
                         "Delete User",
                         style: TextStyle(
-                            fontSize: 12.sp, fontWeight: FontWeight.w400),
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.white),
                       ))
           ],
         ),

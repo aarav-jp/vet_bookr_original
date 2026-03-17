@@ -129,6 +129,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.1.3"
+  cloudflare_r2_uploader:
+    dependency: "direct main"
+    description:
+      name: cloudflare_r2_uploader
+      sha256: ffd8c75c5d4a7d8970ba5fe453078a02258fa0716e2b7d8e950fe43ff2181626
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   code_assets:
     dependency: transitive
     description:
@@ -772,10 +780,10 @@ packages:
     dependency: transitive
     description:
       name: mime
-      sha256: "801fd0b26f14a4a58ccb09d5892c3fbdeff209594300a542492cf13fba9d247a"
+      sha256: "41a20518f0cb1256669420fdba0cd90d21561e560ac240f26ef8322e45bb7ed6"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.6"
+    version: "2.0.0"
   native_toolchain_c:
     dependency: transitive
     description:

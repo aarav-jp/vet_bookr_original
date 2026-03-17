@@ -134,9 +134,9 @@ class _ShowPetState extends State<ShowPet> {
                         isLoading = true;
                       });
 
-                      final ref = storageRef.child(
-                          "Users/${FirebaseAuth.instance.currentUser?.uid}/${widget.details["id"]}");
-                      await ref.delete();
+                      // final ref = storageRef.child(
+                      //     "Users/${FirebaseAuth.instance.currentUser?.uid}/${widget.details["id"]}");
+                      // await ref.delete();
                       await FirebaseFirestore.instance
                           .collection("petsDetails")
                           .doc(widget.details["id"])

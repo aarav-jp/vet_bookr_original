@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,6 +10,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:vet_bookr/constant.dart';
 import 'package:vet_bookr/models/prescription.dart';
+import 'package:vet_bookr/oScreens/r2.dart';
 
 class AddPetHome extends StatefulWidget {
   const AddPetHome({super.key});
@@ -46,20 +48,23 @@ class _AddPetHomeState extends State<AddPetHome> {
 
   String imageUrl = "";
 
-  Future<void> uploadImages({required String path, required String id}) async {
-    try {
-      final imageRef = storageRef
-          .child("Users/${FirebaseAuth.instance.currentUser?.uid}/$id");
-      await imageRef.putFile(File(path));
-      imageUrl = await imageRef.getDownloadURL();
-      setState(() {});
-      //print(imageRef.getDownloadURL());
-    } on FirebaseException catch (e) {
-      print("Function does work");
-      SnackBar snackBar = SnackBar(content: Text(e.message!));
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-    }
-  }
+  // Future<void> uploadImages({required String path, required String id}) async {
+  //   try {
+  //     print("Users/${FirebaseAuth.instance.currentUser?.uid}/$id");
+  //     final imageRef = storageRef
+  //         .child("Users/${FirebaseAuth.instance.currentUser?.uid}/$id");
+  //     await imageRef.putFile(File(path));
+  //
+  //     imageUrl = await imageRef.getDownloadURL();
+  //
+  //     setState(() {});
+  //     //print(imageRef.getDownloadURL());
+  //   } on FirebaseException catch (e) {
+  //     print("Function does work");
+  //     SnackBar snackBar = SnackBar(content: Text(e.message!));
+  //     ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -258,9 +263,15 @@ class _AddPetHomeState extends State<AddPetHome> {
   }
 
   Future<void> addPetToFireStore(Map<String, dynamic> addedPet) async {
+    print('projectId: ${Firebase.app().options.projectId}');
+    print('storageBucket: ${Firebase.app().options.storageBucket}');
+    print('uid: ${FirebaseAuth.instance.currentUser?.uid}');
+
     var doc = FirebaseFirestore.instance.collection("petsDetails").doc();
     addedPet.update("id", (value) => doc.id);
-    await uploadImages(path: profilePic!.path, id: doc.id);
+
+    var imageUrl = await R2Service.uploadImage(File(profilePic!.path));
+    print(imageUrl);
     addedPet.update("profilePicture", (value) => imageUrl);
 
     await FirebaseFirestore.instance
@@ -270,7 +281,7 @@ class _AddPetHomeState extends State<AddPetHome> {
     await FirebaseFirestore.instance
         .collection("users")
         .doc(FirebaseAuth.instance.currentUser?.uid)
-        .set({
+        .update({
       "pets": FieldValue.arrayUnion([doc.id])
     });
   }

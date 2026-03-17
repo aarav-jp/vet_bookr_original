@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,6 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:vet_bookr/constant.dart';
 import 'package:vet_bookr/models/prescription.dart';
+import 'package:vet_bookr/oScreens/r2.dart';
 
 import 'addPet_screen.dart';
 
@@ -60,23 +60,23 @@ class _AddPetFilesState extends State<AddPetFiles> {
   List<String> imageUrlList = [];
   int index = 0;
 
-  Future<void> uploadImages(
-      {required String path, required String name}) async {
-    try {
-      final imageRef = storageRef.child(
-          "Users/${FirebaseAuth.instance.currentUser?.uid}/$petId$index");
-      index++;
-      await imageRef.putFile(File(path));
-      imageUrl = await imageRef.getDownloadURL();
-      imageUrlList.add(imageUrl);
-      setState(() {});
-      print(imageRef.getDownloadURL());
-    } on FirebaseException catch (e) {
-      print("Function does work");
-      SnackBar snackBar = SnackBar(content: Text(e.message!));
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-    }
-  }
+  // Future<void> uploadImages(
+  //     {required String path, required String name}) async {
+  //   try {
+  //     final imageRef = storageRef.child(
+  //         "Users/${FirebaseAuth.instance.currentUser?.uid}/$petId$index");
+  //     index++;
+  //     await imageRef.putFile(File(path));
+  //     imageUrl = await imageRef.getDownloadURL();
+  //     imageUrlList.add(imageUrl);
+  //     setState(() {});
+  //     print(imageRef.getDownloadURL());
+  //   } on FirebaseException catch (e) {
+  //     print("Function does work");
+  //     SnackBar snackBar = SnackBar(content: Text(e.message!));
+  //     ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -274,7 +274,8 @@ class _AddPetFilesState extends State<AddPetFiles> {
                       // vaccinationDate =
                       //     "${selectedDate.day}-${selectedDate.month}-${selectedDate.year}";
                       for (File file in files) {
-                        await uploadImages(path: file.path, name: petName);
+                        var img = await R2Service.uploadImage(File(file.path));
+                        imageUrlList.add(img);
                       }
 
                       Map<String, dynamic> addedPetFile = {

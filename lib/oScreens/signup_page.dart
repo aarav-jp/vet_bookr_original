@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -84,30 +85,31 @@ class _SignUpPageState extends State<SignUpPage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   signupUser(String email, String password) async {
-    User? user;
-
-    /**
-     * Link credentials to the user.
-     */
-
     try {
       UserCredential userCredential = await _auth
           .createUserWithEmailAndPassword(email: email, password: password);
-      user = userCredential.user;
+
+      User? user = userCredential.user;
+
+      if (user != null) {
+        await FirebaseFirestore.instance.collection('users').doc(user.uid).set({
+          'id': user.uid,
+          'email': user.email,
+        });
+      }
 
       var bar = SnackBar(content: Text("${user?.email} has signed up"));
       ScaffoldMessenger.of(context).showSnackBar(bar);
+
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => ListPets()
-            // PV2(
-            //   auth: _auth,
-            //   fromLogin: false,
-            // )
-            ),
+        MaterialPageRoute(builder: (context) => ListPets()),
       );
     } on FirebaseAuthException catch (error) {
       var bar = SnackBar(content: Text("${error.message}"));
+      ScaffoldMessenger.of(context).showSnackBar(bar);
+    } catch (error) {
+      var bar = SnackBar(content: Text(error.toString()));
       ScaffoldMessenger.of(context).showSnackBar(bar);
     }
   }
